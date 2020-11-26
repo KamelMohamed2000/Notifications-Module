@@ -37,5 +37,12 @@ public class NotificationManager {
 
 	
 	}
+	public void Delete(String type){
+
+        for (int i = 0 ; i < notificationCategories.size(); i++){
+            if (type.equalsIgnoreCase(notificationCategories.get(i).getType()))
+                notificationCategories.remove(i);
+        }
+    }
 
 }
