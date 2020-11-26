@@ -3,14 +3,20 @@ import java.util.ArrayList;
 public class NotificationTemplate {
     private String type;
     private String Context;
-    private ArrayList<Character> Placeholder;
+    private ArrayList<String> Placeholder;
     private String email;
 
     public NotificationTemplate() {
         type="";
         Context="";
-        Placeholder = new ArrayList<Character>();
+        Placeholder = new ArrayList<String>();
         email="";
+    }
+
+    public NotificationTemplate(String type, String context, ArrayList<String> Placeholder) {
+        this.type = type;
+        this.Context = context;
+        this.Placeholder = Placeholder;
     }
 
     public String getType() {
@@ -29,11 +35,11 @@ public class NotificationTemplate {
         Context = context;
     }
 
-    public ArrayList<Character> getPlaceholder() {
+    public ArrayList<String> getPlaceholder() {
         return Placeholder;
     }
 
-    public void setPlaceholder(ArrayList<Character> placeholder) {
+    public void setPlaceholder(ArrayList<String> placeholder) {
         Placeholder = placeholder;
     }
 

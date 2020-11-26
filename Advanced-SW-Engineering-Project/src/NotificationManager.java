@@ -4,7 +4,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class NotificationManager {
-	private ArrayList<NotificationTemplate>notificationCategories = new ArrayList<>();
+	public ArrayList<NotificationTemplate>notificationCategories = new ArrayList<>();
 
 	public NotificationManager() {
 		try { 
@@ -33,10 +33,24 @@ public class NotificationManager {
 //            out.writeObject(notificationCategories);
 //        } catch (IOException e) {
 //            e.printStackTrace();
-//      }
-
-	
+//
 	}
+
+	public void update(String type,String newUpdate,String whatToUpdate)
+	{
+		for(int i=0;i<notificationCategories.size();i++)
+		{
+			if(notificationCategories.get(i).getType().equalsIgnoreCase(type) && whatToUpdate.equalsIgnoreCase("context"))
+			{
+				notificationCategories.get(i).setContext(newUpdate);
+			}
+			else if(notificationCategories.get(i).getType().equalsIgnoreCase(type) && whatToUpdate.equalsIgnoreCase("type"))
+			{
+				notificationCategories.get(i).setType(newUpdate);
+			}
+		}
+	}
+
 	public void Delete(String type){
 
         for (int i = 0 ; i < notificationCategories.size(); i++){
