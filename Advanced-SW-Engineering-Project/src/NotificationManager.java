@@ -58,5 +58,14 @@ public class NotificationManager {
                 notificationCategories.remove(i);
         }
     }
+	public void Read(String type) {
+
+        for (int i = 0 ; i < notificationCategories.size(); i++){
+            if (type.equalsIgnoreCase(notificationCategories.get(i).getType()))
+                System.out.println(notificationCategories.get(i).getContext());
+        }
+		
+		
+	}
 
 }

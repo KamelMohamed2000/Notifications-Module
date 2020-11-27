@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		NotificationManager notificationManager = new NotificationManager();	
 		int choice;
-		NotificationManager notificationManager = new NotificationManager();
 		while (true)
 		{
 			System.out.println("Enter your choice");
@@ -25,7 +25,6 @@ public class Main {
 
 			Scanner in = new Scanner(System.in);
 			choice = in.nextInt();
-			in.skip("\n");
 			if(choice == 1)
 			{
 				String type;
@@ -69,7 +68,10 @@ public class Main {
 			}
 			else if(choice ==3)
 			{
-				//Read function still to be implemented
+				String whatToRead;
+				System.out.println("What Type of notifications you Want To Read");
+				whatToRead=in.nextLine();
+				notificationManager.Read(whatToRead);
 			}
 			else if(choice == 4)
 			{
@@ -96,18 +98,7 @@ public class Main {
 //						,"waleedkamal1999@gmail.com");
 //		
 //		notificationManager.create(notificationTemplate);
-//		
-//		
-//		ArrayList<Character> Plholder2 = new ArrayList<Character>(
-//				Arrays.asList('x','y'));
-//		NotificationTemplate notificationTemplate1 = new 
-//				NotificationTemplate("Checking"
-//						, "Darling {x} , your calling of the {y} is confirmed. thanks for using our store :( "
-//						, Plholder2
-//						,"ziadamr@gmail.com");
-//		
-//		notificationManager.create(notificationTemplate1);
-
+	
 
 	}
 

@@ -12,11 +12,18 @@ public class NotificationTemplate {
         Placeholder = new ArrayList<String>();
         email="";
     }
-
     public NotificationTemplate(String type, String context, ArrayList<String> Placeholder) {
         this.type = type;
         this.Context = context;
         this.Placeholder = Placeholder;
+        email="";
+    }
+    
+    public NotificationTemplate(String type, String context, ArrayList<String> Placeholder,String email) {
+        this.type = type;
+        this.Context = context;
+        this.Placeholder = Placeholder;
+        this.email=email;
     }
 
     public String getType() {
