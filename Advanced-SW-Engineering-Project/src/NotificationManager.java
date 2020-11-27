@@ -16,15 +16,27 @@ public class NotificationManager {
 		}
 		
 		catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            System.out.println("xxx");
         }
 		
 
 	}	
 
 	public void create (NotificationTemplate notificationTemplate) {
-	
-		notificationCategories.add(notificationTemplate);
+
+		boolean Flag=false;
+		for(int i=0;i<notificationCategories.size();i++)
+		{
+			if(notificationCategories.get(i).getType().equalsIgnoreCase(notificationTemplate.getType()))
+			{
+				System.out.println("Template Already Present");
+				Flag=true;
+				break;
+			}
+
+		}
+		if(Flag== false)
+			notificationCategories.add(notificationTemplate);
  
 //		FileOutputStream file = null;------------------------> serilization
 //        try {
@@ -48,6 +60,10 @@ public class NotificationManager {
 			{
 				notificationCategories.get(i).setType(newUpdate);
 			}
+			else
+			{
+				System.out.println("Wrong parameter");
+			}
 		}
 	}
 
@@ -67,5 +83,7 @@ public class NotificationManager {
 		
 		
 	}
+
+
 
 }

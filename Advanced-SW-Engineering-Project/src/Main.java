@@ -12,10 +12,9 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		NotificationManager notificationManager = new NotificationManager();	
+		NotificationManager notificationManager = new NotificationManager();
 		int choice;
-		while (true)
-		{
+		while (true) {
 			System.out.println("Enter your choice");
 			System.out.println("1-Creat Template");
 			System.out.println("2-Update Template");
@@ -25,81 +24,74 @@ public class Main {
 
 			Scanner in = new Scanner(System.in);
 			choice = in.nextInt();
-			if(choice == 1)
-			{
+			in.skip("\n");
+			if (choice == 1) {
+				ArrayList<String>channels= new ArrayList<>();
+				ArrayList<String>languages= new ArrayList<>();
 				String type;
 				String Context;
-				String placeholder = "";
-				ArrayList<String>Placeholders = new ArrayList<String>();
-				int numberOfPlaceholders;
+				String channel;
+				String lang;
+				int numberOfPlaceholders,numberOfChannels,numberOfLanguages;
 				System.out.println("Enter Template type");
 				type = in.nextLine();
 				System.out.println("Enter Template Context ");
 				Context = in.nextLine();
-				for(int i=0;i<Context.length();i++)
+				System.out.println("How many channels do you want to add?");
+				numberOfChannels = in.nextInt();
+				for(int i=0;i<numberOfChannels;i++)
 				{
-					if(Context.charAt(i) == '{')
-					{
-						for(int j=i ;j<Context.length();j++)
-						{
-							placeholder +=Context.charAt(j);
-							if(Context.charAt(j)=='}')
-								break;
-						}
-					}
-					Placeholders.add(placeholder);
-					placeholder="";
+					System.out.println("Enter a Channel");
+					channel=in.next();
+					channels.add(channel);
 				}
-				NotificationTemplate template = new NotificationTemplate(type,Context,Placeholders);
+				System.out.println("How many languages do you want to add?");
+				numberOfLanguages = in.nextInt();
+				for(int i=0;i<numberOfLanguages;i++)
+				{
+					System.out.println("Enter a channel");
+					lang = in.next();
+					languages.add(lang);
+				}
+
+				NotificationTemplate template = new NotificationTemplate(type, Context,channels);
 				notificationManager.notificationCategories.add(template);
-			}
-			else if (choice == 2)
-			{
+
+			} else if (choice == 2) {
 				String whatToUpdate;
 				String typeOfTemplate;
 				String newUpdate;
 				System.out.println("What Type of tempelates to do you want to update?");
 				typeOfTemplate = in.nextLine();
-				System.out.println("What do you want to update? Type or Context");
+				System.out.println("What do you want to update? Type or Context, or Channels, or languages");
 				whatToUpdate = in.nextLine();
 				System.out.println("Enter your new Update");
 				newUpdate = in.nextLine();
 				notificationManager.update(typeOfTemplate, newUpdate, whatToUpdate);
-			}
-			else if(choice ==3)
-			{
+			} else if (choice == 3) {
 				String whatToRead;
 				System.out.println("What Type of notifications you Want To Read");
-				whatToRead=in.nextLine();
+				whatToRead = in.nextLine();
 				notificationManager.Read(whatToRead);
-			}
-			else if(choice == 4)
-			{
+			} else if (choice == 4) {
 				String typeOfTemplate;
 				System.out.println("Which type of template do you want to remove");
 				typeOfTemplate = in.nextLine();
 				notificationManager.Delete(typeOfTemplate);
-			}
-			else if(choice ==5)
-			{
-				//SerializationCode
-				break;
+			} else if (choice == 5) {
+				FileOutputStream file = null;
+				try {
+					file = new FileOutputStream("Notifications.txt");
+					ObjectOutputStream out = new ObjectOutputStream(file);
+					out.writeObject(notificationManager.notificationCategories);
+					System.exit(0);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
 			}
 
 		}
-//		
-//		ArrayList<Character> Plholder = new ArrayList<Character>(
-//				Arrays.asList('x','y'));
-//		NotificationTemplate notificationTemplate = new 
-//				NotificationTemplate("Confirmation"
-//						, "Dear {x} , your booking of the {y} is confirmed. thanks for using our store :) "
-//						, Plholder
-//						,"waleedkamal1999@gmail.com");
-//		
-//		notificationManager.create(notificationTemplate);
-	
 
 	}
-
 }

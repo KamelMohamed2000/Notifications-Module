@@ -1,29 +1,57 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class NotificationTemplate {
+public class NotificationTemplate implements Serializable {
     private String type;
     private String Context;
     private ArrayList<String> Placeholder;
-    private String email;
+    private ArrayList<String> Languages;
+    private ArrayList<String> Channels;
+
+    public ArrayList<String> getLanguages() {
+        return Languages;
+    }
+
+    public void setLanguages(ArrayList<String> languages) {
+        Languages = languages;
+    }
+
+    public ArrayList<String> getChannels() {
+        return Channels;
+    }
+
+    public void setChannels(ArrayList<String> channels) {
+        Channels = channels;
+    }
 
     public NotificationTemplate() {
         type="";
         Context="";
         Placeholder = new ArrayList<String>();
-        email="";
     }
-    public NotificationTemplate(String type, String context, ArrayList<String> Placeholder) {
+    public NotificationTemplate(String type, String context, ArrayList<String>channels) {
         this.type = type;
         this.Context = context;
-        this.Placeholder = Placeholder;
-        email="";
+        this.Channels = channels;
+        this.Placeholder = new ArrayList<String>();
+        this.getPlaceholder(context);
+
     }
-    
-    public NotificationTemplate(String type, String context, ArrayList<String> Placeholder,String email) {
-        this.type = type;
-        this.Context = context;
-        this.Placeholder = Placeholder;
-        this.email=email;
+
+    public void getPlaceholder(String Context)
+    {
+        String placeholder="";
+        for (int i = 0; i < Context.length(); i++) {
+            if (Context.charAt(i) == '{') {
+                for (int j = i; j < Context.length(); j++) {
+                    placeholder += Context.charAt(j);
+                    if (Context.charAt(j) == '}')
+                        break;
+                }
+            }
+            Placeholder.add(placeholder);
+            placeholder = "";
+        }
     }
 
     public String getType() {
@@ -50,11 +78,4 @@ public class NotificationTemplate {
         Placeholder = placeholder;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
