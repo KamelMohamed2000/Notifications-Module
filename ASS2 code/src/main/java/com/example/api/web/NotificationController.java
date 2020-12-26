@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -72,6 +71,14 @@ public class NotificationController {
         }
         return "redirect:/delete";
     }
+    @GetMapping("/read")
+    public String Read(Model model){
+        List<NotificationTemplate> rTemplate =  types.findAll();
+        model.addAttribute("readTemp",rTemplate);
+        return "read";
+
+    }
+
     //end of deleting temp
 
 }
