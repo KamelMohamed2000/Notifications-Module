@@ -52,6 +52,26 @@ public class NotificationController {
 
         return "redirect:/create";
     }
-    //end of creating new temp
+    //end of deleting temp
+    @GetMapping("/delete")
+    public String Delete(Model model){
+
+        model.addAttribute("deleteTemp" ,new NotificationTemplate());
+        return "delete";
+
+    }
+    @PostMapping("/delete/success")
+    public String deleteTemp(Model model , NotificationTemplate notiTemp){
+
+        List<NotificationTemplate> Types = types.findAll();
+
+        for (int i =0 ; i < Types.size() ; i++){
+            if (notiTemp.getType().equalsIgnoreCase(Types.get(i).getType())){
+                types.delete(Types.get(i));
+            }
+        }
+        return "redirect:/delete";
+    }
+    //end of deleting temp
 
 }

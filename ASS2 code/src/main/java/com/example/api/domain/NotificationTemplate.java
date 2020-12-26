@@ -30,6 +30,13 @@ public class NotificationTemplate  {
         Languages = languages;
         Channels = channels;
     }
+    public NotificationTemplate(String context, String placeholder,
+                                String languages, String channels) {
+        Context = context;
+        Placeholder = placeholder;
+        Languages = languages;
+        Channels = channels;
+    }
 
     public String getType() {
         return type;
