@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Send</title>
+</head>
+<body>
+<h3>Send Notification</h3>
+<form action="/send/success" method="post">
+    <table>
+        <thead>
+        <tr>
+            <th>Receiver</th><br>
+            <th>Type</th><br>
+            <th>Channel</th><br>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <input th:field="${sendTemp.Placeholder}" required>
+            <input th:field="${sendTemp.type}" required>
+            <input th:field="${sendTemp.Channels}" required>
+        </tr>
+        </tbody>
+        <input type="submit" value="Send">
+
+    </table>
+</form>
+</body>
+</html>

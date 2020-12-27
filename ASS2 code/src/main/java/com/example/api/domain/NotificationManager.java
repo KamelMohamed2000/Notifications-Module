@@ -10,8 +10,6 @@ public class NotificationManager {
 
     public NotificationManager() {
 
-
-
     }
 
     public NotificationManager(ArrayList<NotificationTemplate> notificationCategories) {

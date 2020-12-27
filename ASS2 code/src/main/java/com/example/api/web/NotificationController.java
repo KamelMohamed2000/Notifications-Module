@@ -1,7 +1,9 @@
 package com.example.api.web;
 
 import com.example.api.dao.INotificationTemplateDataAccessLayer;
+import com.example.api.dao.IQueuing;
 import com.example.api.domain.NotificationTemplate;
+import com.example.api.domain.Queuing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ public class NotificationController {
     @Autowired
     private INotificationTemplateDataAccessLayer notiRepo;
 
+    @Autowired
+    private IQueuing sendRepo;
     //Home page
     @GetMapping
     public String welcome(){
@@ -101,5 +105,33 @@ public class NotificationController {
         }
         return "redirect:/update";
     }
+
+    @GetMapping("/send")
+    public String Send(Model model)
+    {
+        Queuing aSend = new Queuing();
+        model.addAttribute("sendTemp",aSend);
+
+        return "send";
+    }
+
+    @PostMapping("/send/success")
+    public String SendTemp(Model model, Queuing queue , NotificationTemplate notiTemp)
+    {
+        List<NotificationTemplate> Types = types.findAll();
+
+        for(int i=0;i<Types.size();i++)
+        {
+            if(Types.get(i).getType().equalsIgnoreCase(queue.getType()))
+            {
+                queue.setContext(Types.get(i).getContext()) ;
+            }
+        }
+        sendRepo.save(queue);
+
+        return "redirect:/";
+    }
+
+
 
 }
