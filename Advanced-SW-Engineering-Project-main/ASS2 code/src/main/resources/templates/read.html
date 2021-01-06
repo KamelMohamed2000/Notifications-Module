@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Find Your Templates Here!!! -></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Template Type</th><br>
+            <th>Template Content</th><br>
+            <th>Template PlaceHolder</th><br>
+            <th>Template Channel</th><br>
+            <th>Template Language</th><br>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="rTemplate:${readTemp}">
+            <td th:text="${rTemplate.type}"></td>
+            <td th:text="${rTemplate.Context}"></td>
+            <td th:text="${rTemplate.Placeholder}"></td>
+            <td th:text="${rTemplate.Channels}"></td>
+            <td th:text="${rTemplate.Languages}"></td>
+            </tr>
+        </tbody>
+
+    </table>
+    <button><a href="/">Back to main menu !</a></button>
+</body>
+</html>

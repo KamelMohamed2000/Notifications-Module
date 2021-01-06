@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Update</title>
+</head>
+<body>
+<h1>Update Template</h1>
+<br><br>
+<div class="container">
+    <form action="/update/success" th:object="${updateTemp}" method="post" >
+        <input type="text" placeholder="Template type" th:field="${updateTemp.type}">
+        <input type="text" placeholder="Template content" th:field="${updateTemp.Context}">
+        <input type="text" placeholder="Template PlaceHolder" th:field="${updateTemp.Placeholder}">
+        <input type="text" placeholder="Template Language" th:field="${updateTemp.Languages}">
+        <input type="text" placeholder="Template Channel" th:field="${updateTemp.Channels}">
+
+        <button type="submit">Update Template</button>
+
+
+    </form>
+
+</div>
+<button><a href="/">Back to main menu !</a></button>
+
+
+</body>
+</html>

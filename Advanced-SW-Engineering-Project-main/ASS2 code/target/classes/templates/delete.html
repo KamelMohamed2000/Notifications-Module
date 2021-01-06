@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https//www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Here you can Create a new Template</h1>
+<br>
+<p>Please enter Template's specifications</p>
+<br>
+<form method="post" action="/delete/success" th:object="${deleteTemp}">
+    <label>Enter type : </label>
+    <input th:field="${deleteTemp.type}" required>
+    <br>
+    <input type="submit" value="Delete">
+    <br>
+    <input type="reset" value="Reset">
+    <br>
+
+</form>
+<button><a href="/">Back to main menu !</a></button>
+</body>
+</html>
