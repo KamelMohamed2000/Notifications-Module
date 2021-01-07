@@ -2,7 +2,9 @@ package com.example.api.webApi;
 
 
 import com.example.api.dao.INotificationTemplateDataAccessLayer;
+import com.example.api.dao.IQueuing;
 import com.example.api.domain.NotificationTemplate;
+import com.example.api.domain.Queuing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,12 @@ public class NotificationApiController {
 
     @Autowired
     INotificationTemplateDataAccessLayer notirepo;
+    @Autowired
+    INotificationTemplateDataAccessLayer types;
+    @Autowired
+    IQueuing sendRepo;
+
+
 
     @PostMapping(value = "/createNotification" , consumes = "application/json")
     public NotificationTemplate createNotification(@RequestBody NotificationTemplate notitemp){
@@ -75,6 +83,23 @@ public class NotificationApiController {
             }
         }
 
+    }
+
+    @PostMapping(value = "/sendNotification" , consumes = "application/json")
+    public void sendNotification(@RequestBody Queuing queue)
+    {
+        List<NotificationTemplate> Types = types.findAll();
+
+        for(int i=0;i<Types.size();i++)
+        {
+            if(Types.get(i).getType().equalsIgnoreCase(queue.getType()) &&
+                    Types.get(i).getChannels().equalsIgnoreCase(queue.getChannels()))
+            {
+                queue.setContext(Types.get(i).getContext()) ;
+                sendRepo.save(queue);
+                break;
+            }
+        }
     }
 
 
