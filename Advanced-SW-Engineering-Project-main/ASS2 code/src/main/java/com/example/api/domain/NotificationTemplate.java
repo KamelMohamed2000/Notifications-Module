@@ -16,6 +16,15 @@ public class NotificationTemplate  {
     private String Placeholder;
     private String Languages;
     private String Channels;
+    private String status = "failed";
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public NotificationTemplate(){
 

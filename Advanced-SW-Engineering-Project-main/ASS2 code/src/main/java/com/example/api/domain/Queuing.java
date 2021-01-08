@@ -15,6 +15,7 @@ public class Queuing {
     private String type;
     private String Context;
     private String Placeholder;
+    private String Status = "Success";
 
     public String getPlaceholder() {
         return Placeholder;
