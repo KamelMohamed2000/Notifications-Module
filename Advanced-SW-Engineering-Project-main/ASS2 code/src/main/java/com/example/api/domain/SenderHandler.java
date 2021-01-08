@@ -69,7 +69,7 @@ class SendingHandler implements CommandLineRunner {
                 System.out.println("Enter channel of the notifications you want to send");
                 String option2 = in.nextLine();
                 dequeue(option2);
-                System.out.println("Successfully Sent\n");
+
 
 
             } else if (option == 3)
@@ -86,11 +86,18 @@ class SendingHandler implements CommandLineRunner {
     public void dequeue(String ChannelType) {
         List<Queuing> queue = sentRepo.findAll();
 
+        if(queue.size()==0)
+        {
+            System.out.println("Nothing in sending queue\n");
+            return;
+        }
+
         for (int i = 0; i < queue.size(); i++) {
             if (queue.get(i).getChannels().equalsIgnoreCase(ChannelType)) {
                 sentRepo.delete(queue.get(i));
             }
         }
+        System.out.println("Successfully Sent\n");
     }
 
 

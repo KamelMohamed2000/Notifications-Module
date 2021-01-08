@@ -1,9 +1,8 @@
 package com.example.api.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import net.bytebuddy.implementation.bind.annotation.Default;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -38,13 +37,8 @@ public class NotificationTemplate  {
         Placeholder = placeholder;
         Languages = languages;
         Channels = channels;
-    }
-    public NotificationTemplate(String context, String placeholder,
-                                String languages, String channels) {
-        Context = context;
-        Placeholder = placeholder;
-        Languages = languages;
-        Channels = channels;
+        this.status = "Failed";
+
     }
 
     public String getType() {

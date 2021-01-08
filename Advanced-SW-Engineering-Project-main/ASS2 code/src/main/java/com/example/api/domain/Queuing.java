@@ -1,9 +1,6 @@
 package com.example.api.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Queue;
 @Entity
 public class Queuing {
@@ -15,7 +12,7 @@ public class Queuing {
     private String type;
     private String Context;
     private String Placeholder;
-    private String Status = "Success";
+    private String Status = "Successful";
 
     public String getPlaceholder() {
         return Placeholder;
@@ -32,6 +29,8 @@ public class Queuing {
         this.type = type;
         Context = context;
         Placeholder = placeholder;
+        this.Status = "Successful";
+
     }
 
     public String getChannels() {
